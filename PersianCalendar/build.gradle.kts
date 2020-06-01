@@ -52,6 +52,14 @@ android {
         multiDexEnabled = false
     }
 
+    flavorDimensions("api")
+    productFlavors {
+        create("minApi21") {
+            minSdkVersion(21)
+            buildFeatures.compose = true
+        }
+    }
+
     signingConfigs {
         create("nightly") {
             storeFile = rootProject.file("nightly.keystore")
@@ -118,6 +126,12 @@ dependencies {
     implementation("androidx.browser:browser:1.0.0")
 
     implementation("androidx.work:work-runtime-ktx:2.3.4")
+
+    val uiVersion = "0.1.0-dev12"
+
+    "minApi21Implementation"("androidx.ui:ui-tooling:$uiVersion")
+    "minApi21Implementation" ("androidx.ui:ui-layout:$uiVersion")
+    "minApi21Implementation"("androidx.ui:ui-material:$uiVersion")
 
     // debugImplementation("com.squareup.leakcanary:leakcanary-android:2.0-alpha-2")
     // debugImplementation("com.github.pedrovgs:lynx:1.1.0")
